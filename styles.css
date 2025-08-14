@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    background-color: #161414;
+    align-items: center;
+    justify-content: center;
+}
+
+p {
+    color: burlywood;
+    font-size: 35px;
+    width: 800px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+
+#weather {
+    color: blanchedalmond;
+    font-size: 50px;
+    font-weight: 600;
+    font-family: 'Courier New', Courier, monospace;
+}
