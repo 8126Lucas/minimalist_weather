@@ -1,5 +1,15 @@
-const API_KEY = process.env.WEATHER_API_KEY;
-let API_URL = `http://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=`;
+const firebaseConfig = {
+    apiKey: "AIzaSyBc397wK8UL-zBFRjYRQmEVOrZtzM8KDps",
+    authDomain: "minimalist-weather-694fa.firebaseapp.com",
+    projectId: "minimalist-weather-694fa",
+    storageBucket: "minimalist-weather-694fa.firebasestorage.app",
+    messagingSenderId: "328043483413",
+    appId: "1:328043483413:web:2f4db824b1dfe53f4a991c"
+};
+
+const app = firebase.initializeApp(firebaseConfig);
+const functions = app.functions();
+const getWeatherData = functions.httpsCallable('getWeather');
 
 const permissionsRequired = {
     name: "geolocation",
@@ -8,13 +18,13 @@ const permissionsRequired = {
 function requestLocation() {
     navigator.geolocation.getCurrentPosition(
         function(position) {
-            const URL = `${API_URL}${position.coords.latitude},${position.coords.longitude}&aqi=no&lang=pt`;
-            fetchWeatherData(URL);
-            setInterval(() => {fetchWeatherData(URL);}, 1800000);
+            fetchWeatherData(position.coords.latitude, position.coords.longitude);
+            setInterval(() => {fetchWeatherData(position.coords.latitude, position.coords.longitude);}, 1800000);
         },
         function(error) {
             if(error.code === error.PERMISSION_DENIED) {
-                document.getElementById("weather").innerHTML = "<p>Permissão de localização negada! Por favor, permita, para ver os dados.</p>";
+                document.getElementById("weather").innerHTML = 
+                    "<p>Permissão de localização negada! Por favor, permita, para ver os dados.</p>";
             }
             else {
                 document.getElementById("weather").innerHTML = 
@@ -24,17 +34,16 @@ function requestLocation() {
     )
 }
 
-function fetchWeatherData(URL) {
-    fetch(URL)
-        .then(response => {
-            if(!response.ok) {
-                console.log("Error with the API!");
-            }
-            return response.json();
-        })
-        .then(data => {
+function fetchWeatherData(latitude, longitude) {
+    getWeatherData({latitude, longitude})
+        .then((result) => {
+            const data = result.data.data;
             displayWeather(data);
-            console.log(data);
+        })
+        .catch((error) => {
+            console.error("Senhoooor! Erro ao conectar à Cloud Function: ", error);
+            document.getElementById("weather").innerHTML = 
+                    "<p>Houve um erro ao obter os dados. Desculpa.</p>";
         });
 }
 
