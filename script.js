@@ -56,20 +56,34 @@ function displayWeather(data) {
     var weather = document.getElementById("weather");
     switch (data.current.condition.code) {
         case 1000:
-            weather.innerHTML = `<pre>
-  \\   /
-   .-.       > ${region}
-— (   ) —    > ${condition}
-   \`-'       > ${temperature_c}ºC / ${temperature_f}ºF
-  /   \\
-</pre>`;
+            if(data.current.is_day === 0) {   
+                weather.innerHTML = `<pre>
+
+         _.._
+       .\'  .-\'\`
+      /   /         > ${region}
+      |   |         > ${condition}
+      \\   \\         > ${temperature_c}°C / ${temperature_f}°F
+       \'. _\'-._
+
+    </pre>`;             
+            }
+            else {
+                weather.innerHTML = `<pre>
+      \\   /
+       .-.       > ${region}
+    — (   ) —    > ${condition}
+       \`-'       > ${temperature_c}°C / ${temperature_f}°F
+      /   \\
+    </pre>`;
+            }
             break;
         case 1003:
             weather.innerHTML = `<pre>
   \\   /
    .-.       > ${region}   
 — ( .---     > ${condition}
- .-(    ).   > ${temperature_c}ºC / ${temperature_f}ºF
+ .-(    ).   > ${temperature_c}°C / ${temperature_f}°F
 (___.__)__)
 </pre>`;
             break;
@@ -77,7 +91,7 @@ function displayWeather(data) {
             weather.innerHTML = `<pre>
     .--.    .--.     > ${region}
  .-(    ).-(    ).   > ${condition}
-(___.__)___(___.__)  > ${temperature_c}ºC / ${temperature_f}ºF
+(___.__)___(___.__)  > ${temperature_c}°C / ${temperature_f}°F
 </pre>`;
             break;
         case 1009:
@@ -85,7 +99,7 @@ function displayWeather(data) {
     .--.    .--.
  .-(    ).-(    ).    > ${region}
 (___.--.___(___.__)   > ${condition}
- .-(    ).            > ${temperature_c}ºC / ${temperature_f}ºF
+ .-(    ).            > ${temperature_c}°C / ${temperature_f}°F
 (___.__)__)
 </pre>`;
             break;
@@ -93,7 +107,7 @@ function displayWeather(data) {
             weather.innerHTML = `<pre>
  ~ ~ ~ ~ ~      > ${region}
 ~ ~ ~ ~ ~ ~     > ${condition}
- ~ ~ ~ ~ ~      > ${temperature_c}ºC / ${temperature_f}ºF
+ ~ ~ ~ ~ ~      > ${temperature_c}°C / ${temperature_f}°F
 </pre>`;
             break;
         case 1063:
@@ -101,7 +115,7 @@ function displayWeather(data) {
     .--.
  .-(    ).     > ${region}
 (___.__)__)    > ${condition}
- .  .   .      > ${temperature_c}ºC / ${temperature_f}ºF
+ .  .   .      > ${temperature_c}°C / ${temperature_f}°F
 '  '  '
 </pre>`;
             break;
@@ -111,7 +125,7 @@ function displayWeather(data) {
  .-(    ).
 (___.__)__)     > ${region}
  *   *          > ${condition}
-* * *           > ${temperature_c}ºC / ${temperature_f}ºF
+* * *           > ${temperature_c}°C / ${temperature_f}°F
  *   *
 </pre>`;
             break;
@@ -121,7 +135,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- / /  * *       > ${temperature_c}ºC / ${temperature_f}ºF
+ / /  * *       > ${temperature_c}°C / ${temperature_f}°F
 *  /  * /
 </pre>`;
             break;
@@ -129,7 +143,7 @@ function displayWeather(data) {
             weather.innerHTML = `<pre>
     .--.    .--.      > ${region}
  .-(    ).-(    ).    > ${condition}
-(___.__)___(___.__)   > ${temperature_c}ºC / ${temperature_f}ºF
+(___.__)___(___.__)   > ${temperature_c}°C / ${temperature_f}°F
 </pre>`;
             break;
         case 1114:
@@ -137,7 +151,7 @@ function displayWeather(data) {
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
- *   *  ~>>  ~>    > ${temperature_c}ºC / ${temperature_f}ºF
+ *   *  ~>>  ~>    > ${temperature_c}°C / ${temperature_f}°F
 * * *  ~>  ~>>
 </pre>`;
             break;
@@ -146,7 +160,7 @@ function displayWeather(data) {
     .--.
  .-(    ).       > ${region}
 (___.__)__)      > ${condition}
- * * * * *       > ${temperature_c}ºC / ${temperature_f}ºF
+ * * * * *       > ${temperature_c}°C / ${temperature_f}°F
 * * * * * *
  * * * * *
 </pre>`;
@@ -157,7 +171,7 @@ function displayWeather(data) {
     .--.
  .-(    ).       > ${region}
 (___.__)__)      > ${condition}
- ~ ~ ~ ~ ~       > ${temperature_c}ºC / ${temperature_f}ºF
+ ~ ~ ~ ~ ~       > ${temperature_c}°C / ${temperature_f}°F
 ~ ~ ~ ~ ~ ~
  ~ ~ ~ ~ ~
 </pre>`;
@@ -168,7 +182,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- .  .   .       > ${temperature_c}ºC / ${temperature_f}ºF
+ .  .   .       > ${temperature_c}°C / ${temperature_f}°F
 '  '  '
 </pre>`;
             break;
@@ -178,7 +192,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- / /  * *       > ${temperature_c}ºC / ${temperature_f}ºF
+ / /  * *       > ${temperature_c}°C / ${temperature_f}°F
 *  /  * /
 </pre>`;
             break;
@@ -188,7 +202,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- .  .   .       > ${temperature_c}ºC / ${temperature_f}ºF
+ .  .   .       > ${temperature_c}°C / ${temperature_f}°F
 '  '  '
 </pre>`;
             break;
@@ -198,7 +212,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- /// /// /      > ${temperature_c}ºC / ${temperature_f}ºF
+ /// /// /      > ${temperature_c}°C / ${temperature_f}°F
 //// ////
 </pre>`;
             break;
@@ -208,7 +222,7 @@ function displayWeather(data) {
     .--.
  .-(    ).       > ${region}
 (___.__)__)      > ${condition}
- /// /// //      > ${temperature_c}ºC / ${temperature_f}ºF
+ /// /// //      > ${temperature_c}°C / ${temperature_f}°F
 //// //// /
 </pre>`;
             break;
@@ -218,7 +232,7 @@ function displayWeather(data) {
     .--.
  .-(    ).       > ${region}
 (___.__)__)      > ${condition}
- / /  * *        > ${temperature_c}ºC / ${temperature_f}ºF
+ / /  * *        > ${temperature_c}°C / ${temperature_f}°F
 *  /  * /
 </pre>`;
             break;
@@ -227,7 +241,7 @@ function displayWeather(data) {
     .--.
  .-(    ).       > ${region}
 (___.__)__)      > ${condition}
- / /  * *        > ${temperature_c}ºC / ${temperature_f}ºF
+ / /  * *        > ${temperature_c}°C / ${temperature_f}°F
 *  /  * /
 </pre>`;
             break;
@@ -237,7 +251,7 @@ function displayWeather(data) {
  .-(    ).
 (___.__)__)      > ${region}
  / /  * *        > ${condition}
-*  /  * /        > ${temperature_c}ºC / ${temperature_f}ºF
+*  /  * /        > ${temperature_c}°C / ${temperature_f}°F
  .  .   .
 '  '  '
 </pre>`;
@@ -250,7 +264,7 @@ function displayWeather(data) {
     .--.
  .-(    ).      > ${region}
 (___.__)__)     > ${condition}
- *   *          > ${temperature_c}ºC / ${temperature_f}ºF
+ *   *          > ${temperature_c}°C / ${temperature_f}°F
 * * * 
  *   *
 </pre>`;
@@ -262,7 +276,7 @@ function displayWeather(data) {
  .-(    ).
 (___.__)__)       > ${region}
  * * * * *        > ${condition}
-* * * * * *       > ${temperature_c}ºC / ${temperature_f}ºF
+* * * * * *       > ${temperature_c}°C / ${temperature_f}°F
  * * * * *
 </pre>`;
             break;
@@ -271,7 +285,7 @@ function displayWeather(data) {
     .--.
  .-(    ).        > ${region}
 (___.__)__)       > ${condition}
- o   o            > ${temperature_c}ºC / ${temperature_f}ºF
+ o   o            > ${temperature_c}°C / ${temperature_f}°F
 o o o 
  o   o
 </pre>`;
@@ -281,7 +295,7 @@ o o o
     .--.
  .-(    ).        > ${region}
 (___.__)__)       > ${condition}
- .  .   .         > ${temperature_c}ºC / ${temperature_f}ºF
+ .  .   .         > ${temperature_c}°C / ${temperature_f}°F
 '  '  '
 </pre>`;
             break;
@@ -300,7 +314,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
- / /  * *          > ${temperature_c}ºC / ${temperature_f}ºF
+ / /  * *          > ${temperature_c}°C / ${temperature_f}°F
 *  /  * /
 </pre>`;
             break;
@@ -310,7 +324,7 @@ o o o
  .-(    ).
 (___.__)__)       > ${region}
  / /  * *         > ${condition}
-*  /  * /         > ${temperature_c}ºC / ${temperature_f}ºF
+*  /  * /         > ${temperature_c}°C / ${temperature_f}°F
  .  .   .
 '  '  '
 </pre>`;
@@ -320,7 +334,7 @@ o o o
     .--.
  .-(    ).        > ${region}
 (___.__)__)       > ${condition}
- *   *            > ${temperature_c}ºC / ${temperature_f}ºF
+ *   *            > ${temperature_c}°C / ${temperature_f}°F
 * * * 
  *   *
 </pre>`;
@@ -331,7 +345,7 @@ o o o
  .-(    ).
 (___.__)__)        > ${region}
  * * * * *         > ${condition}
-* * * * * *        > ${temperature_c}ºC / ${temperature_f}ºF
+* * * * * *        > ${temperature_c}°C / ${temperature_f}°F
  * * * * *
 </pre>`;
             break;
@@ -341,7 +355,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
- o   o             > ${temperature_c}ºC / ${temperature_f}ºF
+ o   o             > ${temperature_c}°C / ${temperature_f}°F
 o o o 
  o   o
 </pre>`;
@@ -351,7 +365,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
-  /_/ . . .        > ${temperature_c}ºC / ${temperature_f}ºF
+  /_/ . . .        > ${temperature_c}°C / ${temperature_f}°F
   /_/' ' '
 
 </pre>`;
@@ -361,7 +375,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
-  /_/ /// /        > ${temperature_c}ºC / ${temperature_f}ºF
+  /_/ /// /        > ${temperature_c}°C / ${temperature_f}°F
   /_/ ////
 
 </pre>`;
@@ -371,7 +385,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
-  /_/ *   *        > ${temperature_c}ºC / ${temperature_f}ºF
+  /_/ *   *        > ${temperature_c}°C / ${temperature_f}°F
   /_/* * *
 </pre>`;
             break;
@@ -380,7 +394,7 @@ o o o
     .--.
  .-(    ).         > ${region}
 (___.__)__)        > ${condition}
- */_/ * * *        > ${temperature_c}ºC / ${temperature_f}ºF
+ */_/ * * *        > ${temperature_c}°C / ${temperature_f}°F
 * /_/* * * *
 </pre>`;
             break;
